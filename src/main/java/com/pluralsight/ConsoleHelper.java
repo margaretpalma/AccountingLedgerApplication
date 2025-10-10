@@ -33,15 +33,31 @@ public class ConsoleHelper {
 
         public static LocalTime promptForTime(String prompt){
         //todo
-
+            while(true){
+                try{
+                    System.out.println(prompt + ":");
+                    String input = scanner.nextLine();
+                    return LocalTime.parse(input);
+                } catch (Exception e) {
+                    System.out.println("Invalid Time Format. Valid time format: hh-mm-ss");
+                }
+            }
         }
         public static String promptForDescription(String prompt){
         //todo
+            System.out.println(prompt);
+            return scanner.nextLine();
         }
         public static String promptForVendor(String prompt){
         //todo
+            System.out.println(prompt);
+            return scanner.nextLine();
         }
-        public static String promptForAmount(String prompt){
+        public static double promptForAmount(String prompt){
         //todo
+            System.out.println(prompt);
+            double result = scanner.nextDouble();
+            scanner.nextLine();
+            return result;
         }
 }
