@@ -20,11 +20,20 @@ public class ConsoleHelper {
             return scanner.nextLine();
     }
         public static LocalDate promptForDate(String prompt){
-        //todo
+            while(true){
+                try{
+                    System.out.println(prompt + ":");
+                    String input =  scanner.nextLine();
+                    return  LocalDate.parse(input);
+                } catch (Exception e) {
+                    System.out.println("Invalid Date Format. Valid date format: yyyy-mm-dd");
+                }
+            }
         }
 
         public static LocalTime promptForTime(String prompt){
         //todo
+
         }
         public static String promptForDescription(String prompt){
         //todo

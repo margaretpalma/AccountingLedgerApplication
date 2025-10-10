@@ -1,8 +1,9 @@
 package com.pluralsight;
+import java.util.ArrayList
 
 public class Main {
     public static void main(String[] args) {
-        //todo: call consoleledger
+        //todo: call console ledger
         //todo: bufferedReader, fileReader
         //todo: arraylist
         //todo: menu loop
@@ -11,7 +12,7 @@ public class Main {
         //todo: return transactions
 
 //todo: display of menus, menu within menu
-        System.out.println("Hello World");
+
 
     }
 }
