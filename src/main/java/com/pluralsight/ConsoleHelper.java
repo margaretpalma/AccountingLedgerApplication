@@ -15,13 +15,13 @@ public class ConsoleHelper {
         private static Scanner scanner = new Scanner(System.in);
 
         public static String promptForString(String prompt){
-            System.out.println(prompt + ":");
+            System.out.println(prompt + ": ");
             return scanner.nextLine();
     }
         public static LocalDate promptForDate(String prompt){
             while(true){
                 try{
-                    System.out.println(prompt + ":");
+                    System.out.println(prompt);
                     String input =  scanner.nextLine();
                     return  LocalDate.parse(input);
                 } catch (Exception e) {
@@ -34,7 +34,7 @@ public class ConsoleHelper {
         //todo
             while(true){
                 try{
-                    System.out.println(prompt + ":");
+                    System.out.println(prompt);
                     String input = scanner.nextLine();
                     return LocalTime.parse(input);
                 } catch (Exception e) {

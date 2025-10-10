@@ -12,8 +12,25 @@ public class Main {
 
     public static void launchMenu() {
         while (true){
-            System.out.println("\nD) Add Deposit]nP)Make a Payment\nL)Ledger\nX)Exit program");
+            System.out.println("\nD) Add Deposit\nP) Make a Payment\nL) Ledger\nX) Exit program");
+            String choice = ConsoleHelper.promptForString("Choose from menu").toUpperCase();
 
+            switch (choice) {
+                case "D":
+                    System.out.println("Deposit");
+                    break;
+                case "P":
+                    System.out.println("Payment");
+                    break;
+                case "L":
+                    System.out.println("Ledger");
+                    break;
+                case "X":
+                    System.out.println("Exiting program");
+                    break;
+                default:
+                    System.out.println("Invalid command");
+            }
 
         }
     }
