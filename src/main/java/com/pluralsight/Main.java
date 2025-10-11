@@ -1,6 +1,4 @@
 package com.pluralsight;
-
-import javax.xml.transform.Source;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -48,8 +46,27 @@ public class Main {
 
                     break;
                 case "L":
+                    //todo: ledger menu
+                    while (true){
+                        //todo: test home screen first
+                        System.out.println("\n---Ledger Menu---");
+                        System.out.println("A) All Entries");
+                        System.out.println("D) Only Deposits");
+                        System.out.println("P) Only Payments");
+                        String choice = ConsoleHelper.promptForString("---Choose An Option---").toUpperCase();
 
-                    System.out.println("Ledger");
+                        switch(choice) {
+                            case "A":
+                                for(Transactions t : transactions) {
+                                    System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                                            + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                                }
+                                break;
+
+                                }
+                        }
+
+                    }
                     break;
                 case "X":
                     System.out.println("Exiting program");
@@ -59,9 +76,8 @@ public class Main {
             }
 
         }
-    }
 
-}
+
 
 
 
@@ -73,6 +89,5 @@ public class Main {
 //todo: call console ledger
 //todo: bufferedReader, fileReader
 //todo: switch statement
-//todo: exception catching
 //todo: return transactions
 //todo: display of menus, menu within menu

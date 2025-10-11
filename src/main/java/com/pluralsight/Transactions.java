@@ -58,6 +58,6 @@ public class Transactions {
         this.amount = amount;
     }
 }
-
+//todo: exception catching
 //todo: add toString for displaying transactions
 //todo: table header
