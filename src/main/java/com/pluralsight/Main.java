@@ -44,8 +44,11 @@ public class Main {
                     System.out.println(paymentDate + "|" + paymentTime + "|" + paymentDescription + "|" + paymentVendor + "|$" + paymentAmount);
                     System.out.println("--Payment Complete--");
                     break;
+                case "L":
+                    launchLedger();
+                    break;
                 case "X":
-                    System.out.println("Exiting program");
+                    System.out.println("Exiting Program");
                     break;
                 default:
                     System.out.println("Invalid command");
@@ -55,44 +58,58 @@ public class Main {
     }
 
 
-        public static void launchLedger(){
-                //todo: ledger menu
-                while (true) {
-                    //todo: test home screen first
-                    System.out.println("\n---Ledger Menu---");
-                    System.out.println("A) All Entries");
-                    System.out.println("D) Only Deposits");
-                    System.out.println("P) Only Payments");
-                    String choice = ConsoleHelper.promptForString("---Choose An Option---").toUpperCase();
+    public static void launchLedger() {
+        //todo: ledger menu
+        while (true) {
+            //todo: test home screen first
+            System.out.println("\n---Ledger Menu---");
+            System.out.println("A) All Entries");
+            System.out.println("D) Only Deposits");
+            System.out.println("P) Only Payments");
+            String choice = ConsoleHelper.promptForString("---Choose An Option---").toUpperCase();
 
-                    switch (choice) {
-                        case "A":
-                            System.out.println("---All Entries---");
-                            for (Transactions t : transactions) {
-                                System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
-                                        + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
-                            }
-                            break;
-
-                        case "D":
-                            System.out.println("---Deposits---");
-                            for(Transactions t : transactions) {
-                                if (t.getAmount() > 0) {            //money coming in ++
-                                    System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
-                                            + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
-                                }
-                            }
-                            break;
-
-                        case "P":
-                            System.out.println("---Payments---");
-                            for(Transactions t : transactions){
-                                if (t.getAmount() < 0){             //money going out --
-                            }
-
+            switch (choice) {
+                case "A":
+                    System.out.println("---All Entries---");
+                    for (Transactions t : transactions) {
+                        System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                                + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
                     }
-                }
+                    break;
+
+                case "D":
+                    System.out.println("---Deposits---");
+                    for (Transactions t : transactions) {
+                        if (t.getAmount() > 0) {            //money coming in ++
+                            System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                                    + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                        }
+                    }
+                    break;
+
+                case "P":
+                    System.out.println("---Payments---");
+                    for (Transactions t : transactions) {
+                        if (t.getAmount() < 0) {                          //money going out --
+                            System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                                    + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                        }
+                    }
+                    break;
+
+                case "H":
+
+                    break;
+
+                default:
+                    System.out.println("Invalid Option");
+            }
+            if(choice.equalsIgnoreCase("H")){
+                break;
+            }
         }
+
+    }
 
 }
 
