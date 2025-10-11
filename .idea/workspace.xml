@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="test date loop">
+    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="formatting on Deposit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760197888664</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="formatting on Deposit">
+      <option name="closed" value="true" />
+      <created>1760198431313</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1760198431313</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -205,6 +214,7 @@
     <MESSAGE value="prints(keeps looping)" />
     <MESSAGE value="added break after loops, working menu" />
     <MESSAGE value="test date loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="test date loop" />
+    <MESSAGE value="formatting on Deposit" />
+    <option name="LAST_COMMIT_MESSAGE" value="formatting on Deposit" />
   </component>
 </project>
