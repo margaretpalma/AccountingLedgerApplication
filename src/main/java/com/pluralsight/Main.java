@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Main {
@@ -20,7 +21,13 @@ public class Main {
                 case "D":
                     System.out.println("Deposit");
                     LocalDate date = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
-                    System.out.println("Date Added Successfully ");
+                    LocalTime time = ConsoleHelper.promptForTime("Enter Time |hh:mm:ss");
+                    String description = ConsoleHelper.promptForString("Enter Description");
+                    String vendor = ConsoleHelper.promptForVendor("Enter Vendor");
+                    Double amount = ConsoleHelper.promptForAmount("Enter Amount");
+                    transactions.add(new Transactions(date, time, description,vendor, amount));
+                    System.out.println(date + "|" + time + "|" + description + "|" + vendor + "|" + "$" + amount);
+                    System.out.println("--Deposit Added--");
                     break;
                 case "P":
                     System.out.println("Payment");
