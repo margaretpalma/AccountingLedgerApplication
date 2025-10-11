@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main {
@@ -18,6 +19,8 @@ public class Main {
             switch (choice) {
                 case "D":
                     System.out.println("Deposit");
+                    LocalDate date = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
+                    System.out.println("Date Added Successfully ");
                     break;
                 case "P":
                     System.out.println("Payment");
