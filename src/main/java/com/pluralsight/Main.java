@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static ArrayList<Transactions> transactions = new ArrayList<>();
+
     public static void main(String[] args) {
         //todo: arraylist
         //todo: menu loop
@@ -12,7 +13,7 @@ public class Main {
     }
 
     public static void launchMenu() {
-        while (true){
+        while (true) {
             System.out.println("\nD) Add Deposit\nP) Make a Payment\nL) Ledger\nX) Exit program");
             String choice = ConsoleHelper.promptForString("Choose from menu").toUpperCase();
 
@@ -24,8 +25,8 @@ public class Main {
                     String description = ConsoleHelper.promptForString("Enter Description");
                     String vendor = ConsoleHelper.promptForVendor("Enter Vendor");
                     Double amount = ConsoleHelper.promptForAmount("Enter Amount");
-                    transactions.add(new Transactions(date, time, description,vendor, amount));
-                    System.out.println(date + "|" + time + "|" + description +"|"+ vendor +"|$"+ amount);
+                    transactions.add(new Transactions(date, time, description, vendor, amount));
+                    System.out.println(date + "|" + time + "|" + description + "|" + vendor + "|$" + amount);
                     System.out.println("--Deposit Added--");
 
                     break;
@@ -39,43 +40,62 @@ public class Main {
 
                     //payment = negative
                     paymentAmount = -Math.abs(paymentAmount);
-                    transactions.add(new Transactions(paymentDate,paymentTime,paymentDescription, paymentVendor,paymentAmount));
-                    System.out.println(paymentDate + "|" + paymentTime + "|" + paymentDescription + "|" + paymentVendor + "|$" + paymentAmount );
+                    transactions.add(new Transactions(paymentDate, paymentTime, paymentDescription, paymentVendor, paymentAmount));
+                    System.out.println(paymentDate + "|" + paymentTime + "|" + paymentDescription + "|" + paymentVendor + "|$" + paymentAmount);
                     System.out.println("--Payment Complete--");
-
-
-                    break;
-                case "L":
-                    //todo: ledger menu
-                    while (true){
-                        //todo: test home screen first
-                        System.out.println("\n---Ledger Menu---");
-                        System.out.println("A) All Entries");
-                        System.out.println("D) Only Deposits");
-                        System.out.println("P) Only Payments");
-                        String choice = ConsoleHelper.promptForString("---Choose An Option---").toUpperCase();
-
-                        switch(choice) {
-                            case "A":
-                                for(Transactions t : transactions) {
-                                    System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
-                                            + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
-                                }
-                                break;
-
-                                }
-                        }
-
-                    }
                     break;
                 case "X":
                     System.out.println("Exiting program");
                     break;
                 default:
                     System.out.println("Invalid command");
-            }
 
+            }
         }
+    }
+
+
+        public static void launchLedger(){
+                //todo: ledger menu
+                while (true) {
+                    //todo: test home screen first
+                    System.out.println("\n---Ledger Menu---");
+                    System.out.println("A) All Entries");
+                    System.out.println("D) Only Deposits");
+                    System.out.println("P) Only Payments");
+                    String choice = ConsoleHelper.promptForString("---Choose An Option---").toUpperCase();
+
+                    switch (choice) {
+                        case "A":
+                            System.out.println("---All Entries---");
+                            for (Transactions t : transactions) {
+                                System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                                        + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                            }
+                            break;
+
+                        case "D":
+                            System.out.println("---Deposits---");
+                            for(Transactions t : transactions) {
+                                if (t.getAmount() > 0) {            //money coming in ++
+                                    System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                                            + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                                }
+                            }
+                            break;
+
+                        case "P":
+                            System.out.println("---Payments---");
+                            for(Transactions t : transactions){
+                                if (t.getAmount() < 0){             //money going out --
+                            }
+
+                    }
+                }
+        }
+
+}
+
 
 
 
