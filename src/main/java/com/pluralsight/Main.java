@@ -66,6 +66,8 @@ public class Main {
             System.out.println("A) All Entries");
             System.out.println("D) Only Deposits");
             System.out.println("P) Only Payments");
+            //Space for Reports Menu
+            System.out.println("H) Home Menu");
             String choice = ConsoleHelper.promptForString("---Choose An Option---").toUpperCase();
 
             switch (choice) {
@@ -98,8 +100,8 @@ public class Main {
                     break;
 
                 case "H":
-
-                    break;
+                    System.out.println("---Returning To Main Menu---");
+                    return;
 
                 default:
                     System.out.println("Invalid Option");
