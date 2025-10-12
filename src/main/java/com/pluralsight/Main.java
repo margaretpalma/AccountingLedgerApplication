@@ -1,17 +1,24 @@
 package com.pluralsight;
+import org.w3c.dom.html.HTMLImageElement;
+
+import java.io.*;
+import java.nio.channels.ScatteringByteChannel;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main {
     public static ArrayList<Transactions> transactions = new ArrayList<>();
 
     public static void main(String[] args) {
         //todo: arraylist
+
+
         //todo: menu loop
         launchMenu();
     }
-
+    //main menu
     public static void launchMenu() {
         while (true) {
             System.out.println("\nD) Add Deposit\nP) Make a Payment\nL) Ledger\nX) Exit program");
@@ -57,7 +64,7 @@ public class Main {
         }
     }
 
-
+    //ledger menu
     public static void launchLedger() {
         //todo: ledger menu
         while (true) {
@@ -113,8 +120,38 @@ public class Main {
 
     }
 
-}
+    //file reading
+    public static ArrayList<Transactions> getTransactionsFromFile(){
+        ArrayList<Transactions> transactions = new ArrayList<Transactions>();
+            try {
+                FileReader fr = new FileReader("transactions.csv");
+                BufferedReader br = new BufferedReader(fr);
 
+                String lineFromString;
+
+                while ((lineFromString = br.readLine()) != null) {
+                    String[] parts = lineFromString.split("\\|");
+
+                    //parse
+                    LocalDate date = LocalDate.parse(parts[0]);
+                    LocalTime time = LocalTime.parse(parts[1]);
+                    String description = parts[2];
+                    String vendor = parts[3];
+                    double amount = Double.parseDouble(parts[4]);
+
+                    //object
+                    Transactions t = new Transactions(date, time, description, vendor, amount);
+                    transactions.add(t);
+                }
+                //close bufferedReader
+                br.close();
+            }
+            catch(Exception e){
+                System.out.println("Error reading file.");
+            }
+            return transactions ;
+            }
+        }
 
 
 
