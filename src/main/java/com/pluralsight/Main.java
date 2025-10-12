@@ -1,12 +1,9 @@
 package com.pluralsight;
-import org.w3c.dom.html.HTMLImageElement;
-
-import java.io.*;
-import java.nio.channels.ScatteringByteChannel;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.io.*;
+
 
 public class Main {
     public static ArrayList<Transactions> transactions = new ArrayList<>();
@@ -14,28 +11,38 @@ public class Main {
     public static void main(String[] args) {
         transactions = getTransactionsFromFile();           //existing transactions
         launchMenu();                                       //launching menu
+
     }
+
     //main menu
     public static void launchMenu() {
         while (true) {
+
             System.out.println("\nD) Add Deposit\nP) Make a Payment\nL) Ledger\nX) Exit program");
             String choice = ConsoleHelper.promptForString("Choose from menu").toUpperCase();
 
             switch (choice) {
                 case "D":
                     System.out.println("-- Add Deposit--");
+
                     LocalDate date = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
                     LocalTime time = ConsoleHelper.promptForTime("Enter Time |hh:mm:ss");
                     String description = ConsoleHelper.promptForString("Enter Description");
                     String vendor = ConsoleHelper.promptForVendor("Enter Vendor");
                     Double amount = ConsoleHelper.promptForAmount("Enter Amount");
-                    transactions.add(new Transactions(date, time, description, vendor, amount));
+
+                    Transactions deposit = new Transactions(date, time, description, vendor, amount);
+                    transactions.add(deposit);
+                    saveTransactionsToFile(deposit);
+
+
                     System.out.println(date + "|" + time + "|" + description + "|" + vendor + "|$" + amount);
                     System.out.println("--Deposit Added--");
 
                     break;
                 case "P":
                     System.out.println("-- Make A Payment--");
+
                     LocalDate paymentDate = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
                     LocalTime paymentTime = ConsoleHelper.promptForTime("Enter Time |hh:mm:ss");
                     String paymentDescription = ConsoleHelper.promptForString("Enter Description");
@@ -44,16 +51,24 @@ public class Main {
 
                     //payment = negative
                     paymentAmount = -Math.abs(paymentAmount);
-                    transactions.add(new Transactions(paymentDate, paymentTime, paymentDescription, paymentVendor, paymentAmount));
+
+                    Transactions payment = new Transactions(paymentDate, paymentTime, paymentDescription, paymentVendor, paymentAmount);
+                    transactions.add(payment);
+                    saveTransactionsToFile(payment);
+
                     System.out.println(paymentDate + "|" + paymentTime + "|" + paymentDescription + "|" + paymentVendor + "|$" + paymentAmount);
-                    System.out.println("--Payment Complete--");
+                    System.out.println("-- Payment Complete --");
                     break;
+
                 case "L":
                     launchLedger();
                     break;
+
+
                 case "X":
                     System.out.println("Exiting Program");
-                    break;
+                    return;
+
                 default:
                     System.out.println("Invalid command");
 
@@ -115,7 +130,6 @@ public class Main {
                 break;
             }
         }
-
     }
 
     //file reading
