@@ -12,11 +12,8 @@ public class Main {
     public static ArrayList<Transactions> transactions = new ArrayList<>();
 
     public static void main(String[] args) {
-        //todo: arraylist
-
-
-        //todo: menu loop
-        launchMenu();
+        transactions = getTransactionsFromFile();           //existing transactions
+        launchMenu();                                       //launching menu
     }
     //main menu
     public static void launchMenu() {
@@ -65,6 +62,7 @@ public class Main {
     }
 
     //ledger menu
+    //todo: Reports Menu
     public static void launchLedger() {
         //todo: ledger menu
         while (true) {
@@ -145,13 +143,27 @@ public class Main {
                 }
                 //close bufferedReader
                 br.close();
-            }
+            } //catch exception
             catch(Exception e){
                 System.out.println("Error reading file.");
             }
             return transactions ;
             }
         }
+    //save transactions
+    public static void saveTransactionsToFile(Transactions transactions){
+            try (FileWriter fileWriter = new FileWriter("transactions.csv", true)) {
+                String line = String.format("%s|%s|%s|%s|%.2f%n");
+                transactions.getDate();
+                transactions.getTime();
+                transactions.getDescription();
+                transactions.getVendor();
+                transactions.getAmount();
+                fileWriter.write(line);
+            } catch (Exception e);
+             System.out.println("Error, Cannot Save " + e.getMessage());
+    }
+    }
 
 
 
