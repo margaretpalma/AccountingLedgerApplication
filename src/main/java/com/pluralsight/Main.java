@@ -55,7 +55,7 @@ public class Main {
                     System.out.println("-- Payment Complete --");
                     break;
 
-                    //launches ledger menu
+                //launches ledger menu
                 case "L":
                     launchLedger();
                     break;
@@ -121,13 +121,13 @@ public class Main {
 
                 case "R":
                     launchReportsMenu();
-                //todo: REPORTS MENU
-                        //todo:1) month to date
-                        //todo:2) previous month
-                        //todo:3) year to date
-                        //todo:4) previous year
-                        //todo:5) search by vendor - vendor name, display entries
-                        //todo:6) back - back to ledger page
+                    //todo: REPORTS MENU
+                    //todo:1) month to date
+                    //todo:2) previous month
+                    //todo:3) year to date
+                    //todo:4) previous year
+                    //todo:5) search by vendor - vendor name, display entries
+                    //todo:6) back - back to ledger page
                 case "H":
                     System.out.println("--- Returning To Main Menu ---");
                     return;
@@ -143,25 +143,24 @@ public class Main {
     //file reader/buffered reader
 
     //reports menu launch
-    public static void launchReportsMenu(){
-        while(true) {
+    public static void launchReportsMenu() {
+        while (true) {
             System.out.println("\n---Reports Menu---");
             System.out.println("1) Month To Date");
             System.out.println("2) Previous Month");
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search By Vendor");
+            System.out.println("6) Custom Search");         //challenge yourself portion
             System.out.println("0) Return to Ledger Menu");
 
             String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
 
 
-
-
             //todo: print newest entries first
 
 
-            switch(choice) {
+            switch (choice) {
                 case "1": {
                     System.out.println("------Month To Date------");
                     //todo complete case 1
@@ -214,17 +213,21 @@ public class Main {
                     }
 
                 }
-                    break;
+                break;
 
                 case "5":
                     String vendorName = ConsoleHelper.promptForString("Vendor Name: ");
-                    System.out.println("Results for: " + vendorName);
+                    System.out.println("Results for | " + vendorName);
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getVendor().equalsIgnoreCase(vendorName)) {
                             System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
                         }
                     }
+                    break;
+
+                case "6":
+                    customSearch();
                     break;
 
                 case "0":
@@ -247,7 +250,7 @@ public class Main {
             while ((lineFromString = br.readLine()) != null) {
                 try {
                     // Skip blank lines
-                    if(lineFromString.trim().isEmpty()) continue;
+                    if (lineFromString.trim().isEmpty()) continue;
 
                     String[] parts = lineFromString.split("\\|");
 
@@ -266,13 +269,13 @@ public class Main {
                     //        + "|" + t.getVendor() + "|$" + t.getAmount());
 
                 } catch (Exception e) {
-                    System.out.println("Error parsing line: '" + lineFromString + "' -> " + e.getMessage());
+                    System.out.println("Error parsing line: '" + lineFromString + " - " + e.getMessage());
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("transaction.csv not found: " + e.getMessage());
+            System.out.println("transaction.csv not found " + e.getMessage());
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("Error reading file " + e.getMessage());
         }
 
         return transactions;
@@ -288,14 +291,58 @@ public class Main {
             fileWriter.write(line);
 
         } catch (Exception e) {
-            System.out.println("Error, Cannot Save " + e.getMessage());
+            System.out.println("Error | Cannot Save |" + e.getMessage());
         }
     }
 
+    //custom search
 
 
+    public static void customSearch() {
+        System.out.println("---Custom Search---");
+
+        String startDateInput = ConsoleHelper.promptForString("Start Date (yyyy-mm-dd) |Press Enter To Skip|");
+        String endDateInput = ConsoleHelper.promptForString("End Date (yyyy-mm-dd) |Press Enter To Skip|");
+        String descriptionInput = ConsoleHelper.promptForString("Description | Optional |Press Enter To Skip|");
+        String vendorInput = ConsoleHelper.promptForString("Vendor | Optional |Press Enter To Skip|");
+        String amountInput = ConsoleHelper.promptForString("Exact Amount |Press Enter To Skip|");
 
 
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+        Double amount = null;
 
+        //date provided
+        try {
+            if (!startDateInput.isEmpty()) startDate = LocalDate.parse(startDateInput);
+            if (!endDateInput.isEmpty()) endDate = LocalDate.parse(endDateInput);
+            if (!amountInput.isEmpty()) amount = Double.parseDouble(amountInput);
+        } catch (Exception e) {
+            System.out.println("Invalid input format.");
+            return;
+        }
+
+        System.out.println("Search Results");
+        ArrayList<Transactions> matches = new ArrayList<Transactions>();
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            Transactions t = transactions.get(i);
+
+            if (startDate != null && t.getDate().isBefore(startDate)) continue;
+            if (endDate != null && t.getDate().isAfter(endDate)) continue;
+            if (!descriptionInput.isEmpty() && !t.getDescription().toLowerCase().contains(descriptionInput.toLowerCase()))
+                continue;
+            if (!vendorInput.isEmpty() && !t.getVendor().toLowerCase().contains(vendorInput.toLowerCase())) continue;
+            if (amount != null && t.getAmount() != amount) continue;
+
+            matches.add(t);
+        }
+
+        if (matches.isEmpty()) {
+            System.out.println("No Transactions Available.");
+        } else {
+            for (Transactions t : matches) {
+                System.out.println(t);
+            }
+        }
+    }
 }
-
