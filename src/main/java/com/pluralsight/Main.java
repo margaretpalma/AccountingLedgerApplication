@@ -85,34 +85,38 @@ public class Main {
             switch (choice) {
                 case "A":
                     System.out.println("--- All Entries ---");
-                    //todo: newest entries first
-                    for (Transactions t : transactions) {
-                        System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
-                                + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
+                        System.out.println(t);
                     }
                     break;
 
+
                 case "D":
-                    //todo : newest entires first
-                    System.out.println("--- Deposits ---");
-                    for (Transactions t : transactions) {
+                    //todo refactor for override
+                    System.out.println("---Deposits---");
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
                         if (t.getAmount() > 0) {
                             System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
                                     + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
-
                         }
                     }
+
                     break;
 
                 case "P":
-                    ///todo: newest entries first
-                    System.out.println("--- Payments ---");
-                    for (Transactions t : transactions) {
+                    //todo refactor for override
+                    //todo: newest entries first
+                    System.out.println("---Payments---");
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
                         if (t.getAmount() < 0) {
                             System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
                                     + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
                         }
                     }
+
                     break;
 
                 case "R":
@@ -162,7 +166,8 @@ public class Main {
                     System.out.println("------Month To Date------");
                     //todo complete case 1
                     LocalDate today = LocalDate.now();
-                    for (Transactions t : transactions) {
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
                         if (t.getDate().getMonth() == today.getMonth() && t.getDate().getYear() == today.getYear()) {
                             System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "|$" + t.getAmount());
                         }
@@ -174,9 +179,11 @@ public class Main {
                     LocalDate today = LocalDate.now();
                     LocalDate previousMonth = today.minusMonths(1);
 
-                    for (Transactions t : transactions) {
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
                         LocalDate date = t.getDate();
                         if (date.getYear() == previousMonth.getYear() && date.getMonth() == previousMonth.getMonth()) {
+                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
                         }
                     }
                     //todo
@@ -186,9 +193,10 @@ public class Main {
                 case "3": {
                     System.out.println("------Year To Date------");
                     LocalDate today = LocalDate.now();
-                    for (Transactions t : transactions) {
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
                         if (t.getDate().getYear() == today.getYear()) {
-                            System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "$|" + t.getAmount());
+                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
                         }
                     }
 
@@ -197,11 +205,11 @@ public class Main {
                 }
                 case "4": {
                     System.out.println("------Previous Year-------");
-                    int previousYear = LocalDate.now().getYear() - 1;   //year - 1
-                    LocalDate today = LocalDate.now();
-                    for(Transactions t : transactions) {
+                    int previousYear = LocalDate.now().getYear() - 1;
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
                         if (t.getDate().getYear() == previousYear) {
-                            System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "$|" + t.getAmount());
+                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
                         }
                     }
 
@@ -211,12 +219,12 @@ public class Main {
                 case "5":
                     String vendorName = ConsoleHelper.promptForString("Vendor Name: ");
                     System.out.println("Results for: " + vendorName);
-                    for (Transactions t : transactions) {
-                        if(t.getVendor().equalsIgnoreCase(vendorName)) {
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
+                        Transactions t = transactions.get(i);
+                        if (t.getVendor().equalsIgnoreCase(vendorName)) {
                             System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
                         }
                     }
-                    //todo
                     break;
 
                 case "0":

@@ -57,7 +57,15 @@ public class Transactions {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+    @Override
+    public String toString() {
+        return String.format("%s | %s | %-20s | %-15s | %8.2f",
+                date, time, description, vendor, amount);
+    }
+
 }
+
+
 //todo: exception catching
 //todo: add toString for displaying transactions
 //todo: table header
