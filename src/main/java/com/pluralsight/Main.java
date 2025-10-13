@@ -148,22 +148,34 @@ public class Main {
             String choice = ConsoleHelper.promptForString("Choose From Menu: ");
 
             switch(choice) {
-                case "1":
+                case "1": {
                     System.out.println("Month To Date");
                     //todo complete case 1
                     LocalDate today = LocalDate.now();
-                    for (Transactions t : transactions){
-                        if(t.getDate().getMonth() == today.getMonth() && t.getDate().getYear() == today.getYear()) {
+                    for (Transactions t : transactions) {
+                        if (t.getDate().getMonth() == today.getMonth() && t.getDate().getYear() == today.getYear()) {
                             System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "|$" + t.getAmount());
                         }
                     }
-                    break;
-                case "2":
+                }
+                break;
+                case "2": {
                     System.out.println("Previous Month");
+                    LocalDate today = LocalDate.now();
+                    LocalDate previousMonth = today.minusMonths(1);
+
+                    for (Transactions t : transactions) {
+                        LocalDate date = t.getDate();
+                        if (date.getYear() == previousMonth.getYear() && date.getMonth() == previousMonth.getMonth()) {
+                        }
+                    }
                     //todo
                     break;
+                }
+
                 case "3":
                     System.out.println("Year To Date");
+
                     //todo
                     break;
                 case "4":
