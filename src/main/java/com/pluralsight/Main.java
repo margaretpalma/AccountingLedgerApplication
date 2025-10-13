@@ -144,11 +144,11 @@ public class Main {
             System.out.println("5) Search By Vendor");
             System.out.println("0) Return to Ledger Menu");
 
-            String choice = ConsoleHelper.promptForString("Choose From Menu: ");
+            String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
 
             switch(choice) {
                 case "1": {
-                    System.out.println("Month To Date");
+                    System.out.println("------Month To Date------");
                     //todo complete case 1
                     LocalDate today = LocalDate.now();
                     for (Transactions t : transactions) {
@@ -159,7 +159,7 @@ public class Main {
                 }
                 break;
                 case "2": {
-                    System.out.println("Previous Month");
+                    System.out.println("------Previous Month------");
                     LocalDate today = LocalDate.now();
                     LocalDate previousMonth = today.minusMonths(1);
 
@@ -173,7 +173,7 @@ public class Main {
                 }
 
                 case "3": {
-                    System.out.println("Year To Date");
+                    System.out.println("------Year To Date------");
                     LocalDate today = LocalDate.now();
                     for (Transactions t : transactions) {
                         if (t.getDate().getYear() == today.getYear()) {
@@ -185,7 +185,7 @@ public class Main {
                     break;
                 }
                 case "4": {
-                    System.out.println("Previous Year");
+                    System.out.println("------Previous Year-------");
                     int previousYear = LocalDate.now().getYear() - 1;   //year - 1
                     LocalDate today = LocalDate.now();
                     for(Transactions t : transactions) {
@@ -198,7 +198,7 @@ public class Main {
                     break;
 
                 case "5":
-                    String vendorName = ConsoleHelper.promptForString("Vendor Name: ")
+                    String vendorName = ConsoleHelper.promptForString("Vendor Name: ");
                     System.out.println("Results for: " + vendorName);
                     for (Transactions t : transactions) {
                         if(t.getVendor().equalsIgnoreCase(vendorName)) {
