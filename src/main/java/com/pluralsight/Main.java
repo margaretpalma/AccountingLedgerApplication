@@ -85,6 +85,10 @@ public class Main {
             switch (choice) {
                 case "A":
                     System.out.println("--- All Entries ---");
+                    //header row before all entries
+                    System.out.println("Date       | Time     | Description                        | Vendor              |   Amount");
+                    System.out.println("----------------------------------------------------------------------------------------------");
+
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         System.out.println(t);
@@ -98,11 +102,9 @@ public class Main {
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getAmount() > 0) {
-                            System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
-                                    + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                            System.out.println(t);
                         }
                     }
-
                     break;
 
                 case "P":
@@ -112,11 +114,9 @@ public class Main {
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getAmount() < 0) {
-                            System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
-                                    + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+                            System.out.println(t);
                         }
                     }
-
                     break;
 
                 case "R":

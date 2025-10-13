@@ -59,9 +59,19 @@ public class Transactions {
     }
     @Override
     public String toString() {
-        return String.format("%s | %s | %-20s | %-15s | %8.2f",
-                date, time, description, vendor, amount);
+        String formattedTime = String.format("%02d:%02d:%02d",
+                time.getHour(), time.getMinute(), time.getSecond());
+
+        return String.format(
+                "%-10s | %-8s | %-35s | %-20s | %8.2f",
+                date.toString(),
+                formattedTime,
+                description,
+                vendor,
+                amount
+        );
     }
+
 
 }
 
