@@ -77,6 +77,7 @@ public class Main {
             System.out.println("A) All Entries");
             System.out.println("D) Only Deposits");
             System.out.println("P) Only Payments");
+            System.out.println("R) Reports Menu");
             System.out.println("H) Home Menu");
 
             String choice = ConsoleHelper.promptForString("---Choose An Option---").toUpperCase();
@@ -109,6 +110,9 @@ public class Main {
                         }
                     }
                     break;
+
+                case "R":
+                    launchReportsMenu();
                 //todo: REPORTS MENU
                         //todo:1) month to date
                         //todo:2) previous month
@@ -147,24 +151,37 @@ public class Main {
                 case "1":
                     System.out.println("Month To Date");
                     //todo complete case 1
-
+                    LocalDate today = LocalDate.now();
+                    for (Transactions t : transactions){
+                        if(t.getDate().getMonth() == today.getMonth() && t.getDate().getYear() == today.getYear()) {
+                            System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "|$" + t.getAmount());
+                        }
+                    }
+                    break;
                 case "2":
                     System.out.println("Previous Month");
                     //todo
-
+                    break;
                 case "3":
                     System.out.println("Year To Date");
                     //todo
-
+                    break;
                 case "4":
                     System.out.println("Previous Year");
                     //todo
+                    break;
                 case "5":
                     System.out.println("Search By Vendor");
                     //todo
+                    String searchForVendor = ConsoleHelper.promptForString("Enter Vendor Name: ");
+                    break;
 
                 case "0":
                     System.out.println("---Returning To Ledger Menu---");
+                    return;
+                default:
+                    System.out.println("Invalid Option");
+                    break;
             }
 
         }
