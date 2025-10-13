@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="search by vendor name">
+    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="ledger menu complete">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/transactions.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,9 +55,19 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Student/pluralsight/capstones/AccountingLedgerApplication/src/main/java/com/pluralsight",
     "settings.editor.selected.configurable": "editor.preferences.completion"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Student\pluralsight\capstones\AccountingLedgerApplication\src" />
+      <recent name="C:\Users\Student\pluralsight\capstones\AccountingLedgerApplication\src\main\java\com\pluralsight" />
+      <recent name="C:\Users\Student\pluralsight\capstones\AccountingLedgerApplication" />
+      <recent name="C:\Users\Student\pluralsight\capstones\AccountingLedgerApplication\target" />
+      <recent name="C:\Users\Student\pluralsight\capstones\AccountingLedgerApplication\src\main\java" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.pluralsight.Main" />
@@ -293,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760326375575</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="ledger menu complete">
+      <option name="closed" value="true" />
+      <created>1760326977727</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1760326977727</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -321,6 +341,7 @@
     <MESSAGE value="month-to-day in case 1" />
     <MESSAGE value="previous month" />
     <MESSAGE value="search by vendor name" />
-    <option name="LAST_COMMIT_MESSAGE" value="search by vendor name" />
+    <MESSAGE value="ledger menu complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="ledger menu complete" />
   </component>
 </project>

@@ -3,6 +3,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class Main {
     public static ArrayList<Transactions> transactions = new ArrayList<>();
@@ -84,6 +85,7 @@ public class Main {
             switch (choice) {
                 case "A":
                     System.out.println("--- All Entries ---");
+                    //todo: newest entries first
                     for (Transactions t : transactions) {
                         System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
                                 + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
@@ -91,16 +93,19 @@ public class Main {
                     break;
 
                 case "D":
+                    //todo : newest entires first
                     System.out.println("--- Deposits ---");
                     for (Transactions t : transactions) {
                         if (t.getAmount() > 0) {
                             System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
                                     + "|" + t.getVendor() + "|$" + String.format("%.2f", t.getAmount()));
+
                         }
                     }
                     break;
 
                 case "P":
+                    ///todo: newest entries first
                     System.out.println("--- Payments ---");
                     for (Transactions t : transactions) {
                         if (t.getAmount() < 0) {
@@ -145,6 +150,12 @@ public class Main {
             System.out.println("0) Return to Ledger Menu");
 
             String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
+
+
+
+
+            //todo: print newest entries first
+
 
             switch(choice) {
                 case "1": {
@@ -223,27 +234,37 @@ public class Main {
     public static ArrayList<Transactions> getTransactionsFromFile() {
         ArrayList<Transactions> transactions = new ArrayList<>();
 
-        try {
-            FileReader fr = new FileReader("transactions.csv");
-            BufferedReader br = new BufferedReader(fr);
-
+        try (BufferedReader br = new BufferedReader(new FileReader("transactions.csv"))) {
             String lineFromString;
             while ((lineFromString = br.readLine()) != null) {
-                String[] parts = lineFromString.split("\\|");
+                try {
+                    // Skip blank lines
+                    if(lineFromString.trim().isEmpty()) continue;
 
-                LocalDate date = LocalDate.parse(parts[0]);
-                LocalTime time = LocalTime.parse(parts[1]);
-                String description = parts[2];
-                String vendor = parts[3];
-                double amount = Double.parseDouble(parts[4]);
+                    String[] parts = lineFromString.split("\\|");
 
-                Transactions t = new Transactions(date, time, description, vendor, amount);
-                transactions.add(t);
+                    LocalDate date = LocalDate.parse(parts[0].trim());
+                    LocalTime time = LocalTime.parse(parts[1].trim());
+                    String description = parts[2].trim();
+                    String vendor = parts[3].trim();
+                    double amount = Double.parseDouble(parts[4].trim());
+
+                    Transactions t = new Transactions(date, time, description, vendor, amount);
+                    transactions.add(t);
+
+                    // debugging option
+                    //shows files before menu
+                    //System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                    //        + "|" + t.getVendor() + "|$" + t.getAmount());
+
+                } catch (Exception e) {
+                    System.out.println("Error parsing line: '" + lineFromString + "' -> " + e.getMessage());
+                }
             }
-
-            br.close();
-        } catch (Exception e) {
-            System.out.println("Error reading file.");
+        } catch (FileNotFoundException e) {
+            System.out.println("transaction.csv not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
         }
 
         return transactions;
@@ -251,10 +272,13 @@ public class Main {
 
     // save transactions
     public static void saveTransactionsToFile(Transactions t) {
+
         try (FileWriter fileWriter = new FileWriter("transactions.csv", true)) {
             String line = String.format("%s|%s|%s|%s|%.2f%n",
                     t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+
             fileWriter.write(line);
+
         } catch (Exception e) {
             System.out.println("Error, Cannot Save " + e.getMessage());
         }
