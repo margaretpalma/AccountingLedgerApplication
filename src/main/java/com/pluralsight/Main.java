@@ -1,5 +1,4 @@
 package com.pluralsight;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -173,19 +172,40 @@ public class Main {
                     break;
                 }
 
-                case "3":
+                case "3": {
                     System.out.println("Year To Date");
+                    LocalDate today = LocalDate.now();
+                    for (Transactions t : transactions) {
+                        if (t.getDate().getYear() == today.getYear()) {
+                            System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "$|" + t.getAmount());
+                        }
+                    }
 
                     //todo
                     break;
-                case "4":
+                }
+                case "4": {
                     System.out.println("Previous Year");
-                    //todo
+                    int previousYear = LocalDate.now().getYear() - 1;   //year - 1
+                    LocalDate today = LocalDate.now();
+                    for(Transactions t : transactions) {
+                        if (t.getDate().getYear() == previousYear) {
+                            System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "$|" + t.getAmount());
+                        }
+                    }
+
+                }
                     break;
+
                 case "5":
-                    System.out.println("Search By Vendor");
+                    String vendorName = ConsoleHelper.promptForString("Vendor Name: ")
+                    System.out.println("Results for: " + vendorName);
+                    for (Transactions t : transactions) {
+                        if(t.getVendor().equalsIgnoreCase(vendorName)) {
+                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
+                        }
+                    }
                     //todo
-                    String searchForVendor = ConsoleHelper.promptForString("Enter Vendor Name: ");
                     break;
 
                 case "0":
