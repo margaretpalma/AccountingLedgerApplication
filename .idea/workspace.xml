@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="custom menus">
+    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="updated entity to vendor">
       <change beforePath="$PROJECT_DIR$/transactions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/transactions.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -351,14 +351,42 @@
       <option name="project" value="LOCAL" />
       <updated>1760451710303</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="choice.toUpperCase to fix issue with menu">
+      <option name="closed" value="true" />
+      <created>1760452342965</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1760452342965</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added html file">
+      <option name="closed" value="true" />
+      <created>1760454893538</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1760454893538</updated>
+    </task>
+    <task id="LOCAL-00035" summary="html file customized">
+      <option name="closed" value="true" />
+      <created>1760455744694</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1760455744694</updated>
+    </task>
+    <task id="LOCAL-00036" summary="updated entity to vendor">
+      <option name="closed" value="true" />
+      <created>1760456125352</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1760456125352</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="todo added" />
-    <MESSAGE value="todo" />
-    <MESSAGE value="promptForDate" />
-    <MESSAGE value="build test, added to ConsoleHelper" />
     <MESSAGE value="prints(keeps looping)" />
     <MESSAGE value="added break after loops, working menu" />
     <MESSAGE value="test date loop" />
@@ -380,6 +408,10 @@
     <MESSAGE value="header menu for transaction.csv, commit before adding optional challenge" />
     <MESSAGE value="fully working menus" />
     <MESSAGE value="custom menus" />
-    <option name="LAST_COMMIT_MESSAGE" value="custom menus" />
+    <MESSAGE value="choice.toUpperCase to fix issue with menu" />
+    <MESSAGE value="added html file" />
+    <MESSAGE value="html file customized" />
+    <MESSAGE value="updated entity to vendor" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated entity to vendor" />
   </component>
 </project>
