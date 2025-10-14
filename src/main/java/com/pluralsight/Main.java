@@ -1,3 +1,4 @@
+//importing java tools
 package com.pluralsight;
 import java.io.*;
 import java.time.LocalDate;
@@ -6,16 +7,21 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 public class Main {
+
+    //declared as a class level variable, accessible through whole project (launchMenu, launchLedger, customSearch)
+    //can modify shared list of transactions
     public static ArrayList<Transactions> transactions = new ArrayList<>();
 
     public static void main(String[] args) {
-        transactions = getTransactionsFromFile(); //transactions from file
-        launchMenu(); // launch main menu
+        transactions = getTransactionsFromFile(); //loading transactions from file
+        launchMenu(); // launching main menu
     }
 
     //main menu
     public static void launchMenu() {
         while (true) {
+
+            //display customized main menu
             System.out.println(ConsoleHelper.BG_VODKA + ConsoleHelper.TAUPE +
                     "\n╔══════════════════════════════╗\n" +
                     "║          MAIN MENU           ║\n" +
@@ -27,23 +33,30 @@ public class Main {
             System.out.println(ConsoleHelper.DOLPHIN + "L)" + ConsoleHelper.RESET + " Ledger");
             System.out.println(ConsoleHelper.PINK + "X)" + ConsoleHelper.RESET + " Exit Program");
 
+            //prompting user input
+            //variable stores as "choice"
+            //calls method promptForString coming from ConsoleHelper
             String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
 
-
+            //starts switch statement - user picks a choice (.toUpperCase lets user use D or d without breaking)
             switch (choice.toUpperCase()) {
                 case "D":
                     System.out.println("-- Add Deposit --");
+
+                    //prompts for parts of transaction
                     LocalDate date = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
                     LocalTime time = ConsoleHelper.promptForTime("Enter Time |hh:mm:ss");
                     String description = ConsoleHelper.promptForString("Enter Description");
                     String vendor = ConsoleHelper.promptForVendor("Enter Vendor");
                     Double amount = ConsoleHelper.promptForAmount("Enter Amount");
 
+                    //transaction object - adds to csv file
                     Transactions deposit = new Transactions(date, time, description, vendor, amount);
                     transactions.add(deposit);
                     saveTransactionsToFile(deposit);
 
                     System.out.println(date + "|" + time + "|" + description + "|" + vendor + "|$" + amount);
+                    //confirmation of deposit added
                     System.out.println(ConsoleHelper.PINK + "-- Deposit Added --" + ConsoleHelper.RESET);
                     break;
 
@@ -55,7 +68,7 @@ public class Main {
                     String paymentVendor = ConsoleHelper.promptForVendor("Enter Vendor");
                     Double paymentAmount = ConsoleHelper.promptForAmount("Enter Amount");
 
-                    //payment = negative
+                    //converts payment to negative
                     paymentAmount = -Math.abs(paymentAmount);
 
                     Transactions payment = new Transactions(paymentDate, paymentTime, paymentDescription, paymentVendor, paymentAmount);
@@ -66,11 +79,11 @@ public class Main {
                     System.out.println(ConsoleHelper.PINK + "-- Payment Complete --" + ConsoleHelper.RESET);
                     break;
 
-                //launches ledger menu
+                //launches ledger submenu
                 case "L":
                     launchLedger();
                     break;
-
+                //exits program
                 case "X":
                     System.out.println("Exiting Program");
                     return;
@@ -83,6 +96,7 @@ public class Main {
 
     // ledger menu
     public static void launchLedger() {
+
         while (true) {
             System.out.println(ConsoleHelper.BG_PINK + ConsoleHelper.TAUPE +
                     "\n╔══════════════════════════╗\n" +
@@ -180,7 +194,7 @@ public class Main {
             //todo: print newest entries first
 
 
-            switch (choice.toUpperCase()) {
+            switch (choice) {
                 case "1": {
                     System.out.println("------Month To Date------");
                     //todo complete case 1
