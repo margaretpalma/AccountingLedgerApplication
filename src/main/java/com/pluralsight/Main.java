@@ -251,7 +251,7 @@ public class Main {
                     break;
 
                 case "0":
-                    System.out.println("---Returning To Ledger Menu---");
+                    System.out.println("---Returning To Main Menu---");
                     return;
                 default:
                     System.out.println("Invalid Option");
