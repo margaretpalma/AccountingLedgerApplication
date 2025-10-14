@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurobyte Accounting</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            margin: 20px;
+            background-color: #fdf6f0; /* soft pastel background */
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #5a4e7c; /* muted pastel purple */
+            text-align: center;
+            font-size: 2.5em;
+        }
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #f7f0f5; /* soft pastel pink/lavender */
+            border-radius: 10px;
+        }
+        .summary-item {
+            text-align: center;
+        }
+        .summary-item h3 {
+            margin: 0;
+            color: #7d6c8a; /* soft gray-purple */
+            font-size: 14px;
+        }
+        .summary-item p {
+            margin: 5px 0 0 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #f48fb1; /* pastel pink */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            background-color: #fcfcfc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background-color: #c3b0e1; /* pastel purple header */
+            color: #fff;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background-color: #f0e7f5; /* subtle hover pastel */
+        }
+        .positive {
+            color: #6bbf59; /* pastel green */
+            font-weight: bold;
+        }
+        .negative {
+            color: #e07b7b; /* pastel red */
+            font-weight: bold;
+        }
+        .loading {
+            text-align: center;
+            color: #7d6c8a;
+            padding: 20px;
+        }
+        .error {
+            color: #e07b7b;
+            padding: 10px;
+            background-color: #fbeaea;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Neurobyte Accounting</h1>
+    <div id="summary" class="summary">
+        <div class="summary-item">
+            <h3>Total Transactions</h3>
+            <p id="totalTransactions">0</p>
+        </div>
+        <div class="summary-item">
+            <h3>Total Income</h3>
+            <p id="totalIncome" class="positive">$0.00</p>
+        </div>
+        <div class="summary-item">
+            <h3>Total Expenses</h3>
+            <p id="totalExpenses" class="negative">$0.00</p>
+        </div>
+        <div class="summary-item">
+            <h3>Current Balance</h3>
+            <p id="balance">$0.00</p>
+        </div>
+    </div>
+    <div id="content" class="loading">Loading transactions...</div>
+</div>
+
+<script>
+    async function loadTransactions() {
+        try {
+            const response = await fetch('transactions.csv');
+            const text = await response.text();
+            const lines = text.trim().split('\n');
+
+            let transactions = [];
+            let balance = 0;
+            let totalIncome = 0;
+            let totalExpenses = 0;
+
+            lines.forEach(line => {
+                const parts = line.split('|').map(p => p.trim());
+                if (parts.length === 5) {
+                    const date = parts[0];
+                    const time = parts[1];
+                    const description = parts[2];
+                    const entity = parts[3];
+                    const amount = parseFloat(parts[4]);
+
+                    balance += amount;
+                    if (amount > 0) {
+                        totalIncome += amount;
+                    } else {
+                        totalExpenses += Math.abs(amount);
+                    }
+
+                    transactions.push({ date, time, description, entity, amount, balance });
+                }
+            });
+
+            transactions.sort((a, b) => {
+                const dateCompare = new Date(b.date) - new Date(a.date);
+                if (dateCompare !== 0) return dateCompare;
+                return b.time.localeCompare(a.time);
+            });
+
+            document.getElementById('totalTransactions').textContent = transactions.length;
+            document.getElementById('totalIncome').textContent = '$' + totalIncome.toFixed(2);
+            document.getElementById('totalExpenses').textContent = '$' + totalExpenses.toFixed(2);
+            const balanceElement = document.getElementById('balance');
+            balanceElement.textContent = '$' + balance.toFixed(2);
+            balanceElement.className = balance >= 0 ? 'positive' : 'negative';
+
+            let html = '<table><thead><tr><th>Date</th><th>Time</th><th>Description</th><th>Entity</th><th>Amount</th><th>Balance</th></tr></thead><tbody>';
+            transactions.forEach(t => {
+                const amountClass = t.amount >= 0 ? 'positive' : 'negative';
+                const amountSign = t.amount >= 0 ? '+' : '';
+                html += `<tr>
+                    <td>${t.date}</td>
+                    <td>${t.time}</td>
+                    <td>${t.description}</td>
+                    <td>${t.entity}</td>
+                    <td class="${amountClass}">${amountSign}$${t.amount.toFixed(2)}</td>
+                    <td><strong>$${t.balance.toFixed(2)}</strong></td>
+                </tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('content').innerHTML = html;
+
+        } catch (error) {
+            document.getElementById('content').innerHTML = '<div class="error">Error loading transactions. Make sure transactions.csv is in the same folder as this file.</div>';
+            console.error('Error:', error);
+        }
+    }
+
+    loadTransactions();
+</script>
+</body>
+</html>
