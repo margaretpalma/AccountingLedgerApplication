@@ -25,14 +25,14 @@ public class ConsoleHelper {
         public static final String BG_VODKA = "\u001B[48;2;187;195;240m";
         public static final String BG_PINK = "\u001B[48;2;255;214;238m";
 
-        // Scanner
+        // Scanner to read users input
         private static Scanner scanner = new Scanner(System.in);
-
+        //prompts for the string
         public static String promptForString(String prompt) {
             System.out.println(TAUPE + prompt + " " + RESET);
             return scanner.nextLine();
         }
-
+        //prompts for the date
         public static LocalDate promptForDate(String prompt) {
             while (true) {
                 try {
@@ -44,7 +44,7 @@ public class ConsoleHelper {
                 }
             }
         }
-
+        //prompts for the time
         public static LocalTime promptForTime(String prompt) {
             while (true) {
                 try {
@@ -56,17 +56,12 @@ public class ConsoleHelper {
                 }
             }
         }
-
-        public static String promptForDescription(String prompt) {
-            System.out.println(TAUPE + prompt + " " + RESET);
-            return scanner.nextLine();
-        }
-
+        //gets the vendor information
         public static String promptForVendor(String prompt) {
             System.out.println(TAUPE + prompt + " " + RESET);
             return scanner.nextLine();
         }
-
+        //gets the numeric value for amount
         public static double promptForAmount(String prompt) {
             System.out.println(TAUPE + prompt + " " + RESET);
             double result = scanner.nextDouble();

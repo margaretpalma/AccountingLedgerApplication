@@ -47,7 +47,7 @@ public class Main {
                     LocalDate date = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
                     LocalTime time = ConsoleHelper.promptForTime("Enter Time |hh:mm:ss");
                     String description = ConsoleHelper.promptForString("Enter Description");
-                    String vendor = ConsoleHelper.promptForVendor("Enter Vendor");
+                    String vendor = ConsoleHelper.promptForString("Enter Vendor");
                     Double amount = ConsoleHelper.promptForAmount("Enter Amount");
 
                     //transaction object - adds to csv file
@@ -118,6 +118,8 @@ public class Main {
                     System.out.println("Date       | Time     | Description                        | Vendor              |   Amount");
                     System.out.println("----------------------------------------------------------------------------------------------");
 
+                    //loops transactions
+                    //did this backwards originally, had to fix for earliest transactions first
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         System.out.println(t);
@@ -126,7 +128,9 @@ public class Main {
 
 
                 case "D":
-
+                    //deposits only
+                    //loop goes through every transaction in list
+                    //prints if amount is greater than zero (positive)
                     System.out.println("---Deposits---");
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
@@ -139,6 +143,9 @@ public class Main {
                 case "P":
                     //todo: newest entries first
                     System.out.println("---Payments---");
+                    //payments only
+                    //loop goes through transactions in list
+                    //
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getAmount() < 0) {
