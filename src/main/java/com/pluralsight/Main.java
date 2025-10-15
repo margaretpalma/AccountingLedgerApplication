@@ -203,14 +203,19 @@ public class Main {
             //prompts for user input
             String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
 
-
+            //user choices
             switch (choice) {
                 case "1": {
                     System.out.println("------Month To Date------");
 
+                    //used for comparing transactions
                     LocalDate today = LocalDate.now();
+
+                    //for loop to sort newest first
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
+
+                    //only includes from the current month and year
                         if (t.getDate().getMonth() == today.getMonth() && t.getDate().getYear() == today.getYear()) {
                             System.out.println(t);
                         }
@@ -220,11 +225,16 @@ public class Main {
                 case "2": {
                     System.out.println("------Previous Month------");
                     LocalDate today = LocalDate.now();
+                    //subracts one month from from todays date
                     LocalDate previousMonth = today.minusMonths(1);
 
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         LocalDate date = t.getDate();
+
+                        //condition to check transactions from previous month of current year
+                        //previousMonth.getYear - year of previous month
+                        //previousMonth.getMonth - previous month
                         if (date.getYear() == previousMonth.getYear() && date.getMonth() == previousMonth.getMonth()) {
                             System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
@@ -238,6 +248,8 @@ public class Main {
                     LocalDate today = LocalDate.now();
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
+
+                        //transactions from current year
                         if (t.getDate().getYear() == today.getYear()) {
                             System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
@@ -251,6 +263,8 @@ public class Main {
                     int previousYear = LocalDate.now().getYear() - 1;
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
+
+                        //transactions for previous year
                         if (t.getDate().getYear() == previousYear) {
                             System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
@@ -264,6 +278,8 @@ public class Main {
                     System.out.println("Results for | " + vendorName);
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
+
+                        //vendor name, can be capital or not, still works
                         if (t.getVendor().equalsIgnoreCase(vendorName)) {
                             System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
@@ -271,6 +287,8 @@ public class Main {
                     break;
 
                 case "6":
+
+                    //custom search submenu
                     customSearch();
                     break;
 
@@ -287,8 +305,12 @@ public class Main {
 
 
     public static ArrayList<Transactions> getTransactionsFromFile() {
+
+        //creates an empty list - stores the transactions after reading from CSV file
         ArrayList<Transactions> transactions = new ArrayList<>();
 
+        //bufferedReader package reads text
+        //FileReader passed into consturctor
         try (BufferedReader br = new BufferedReader(new FileReader("transactions.csv"))) {
             String lineFromString;
             while ((lineFromString = br.readLine()) != null) {
@@ -298,6 +320,8 @@ public class Main {
 
                     String[] parts = lineFromString.split("\\|");
 
+
+                    //ISO 8601 Standard for date
                     LocalDate date = LocalDate.parse(parts[0].trim());
                     LocalTime time = LocalTime.parse(parts[1].trim());
                     String description = parts[2].trim();
