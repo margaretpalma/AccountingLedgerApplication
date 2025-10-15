@@ -225,7 +225,7 @@ public class Main {
                 case "2": {
                     System.out.println("------Previous Month------");
                     LocalDate today = LocalDate.now();
-                    //subracts one month from from todays date
+                    //subracts one month from todays date
                     LocalDate previousMonth = today.minusMonths(1);
 
                     for (int i = transactions.size() - 1; i >= 0; i--) {
@@ -331,11 +331,7 @@ public class Main {
                     Transactions t = new Transactions(date, time, description, vendor, amount);
                     transactions.add(t);
 
-                    // debugging option
-                    //shows files before menu
-                    // System.out.println(t.getDate() + "|" + t.getTime() + "|"
-                    //        + "|" + t.getVendor() + "|$" + t.getAmount());
-
+                //catching errors
                 } catch (Exception e) {
                     System.out.println("Error parsing line: '" + lineFromString + " - " + e.getMessage());
                 }
@@ -353,8 +349,12 @@ public class Main {
     public static void saveTransactionsToFile(Transactions t) {
 
         try (FileWriter fileWriter = new FileWriter("transactions.csv", true)) {
+
+        //formatting %s string value, %.2f decimal w/ 2 digits, %n newline
+            //t.getDate... transaction object t
             String line = String.format("%s|%s|%s|%s|%.2f%n",
                     t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
+           //
             fileWriter.write(line);
 
         } catch (Exception e) {
@@ -366,18 +366,19 @@ public class Main {
     public static void customSearch() {
         System.out.println("---Custom Search---");
 
+        //prompt user - can skip the optional ones
         String startDateInput = ConsoleHelper.promptForString("Start Date (yyyy-mm-dd) |Press Enter To Skip|");
         String endDateInput = ConsoleHelper.promptForString("End Date (yyyy-mm-dd) |Press Enter To Skip|");
         String descriptionInput = ConsoleHelper.promptForString("Description | Optional |Press Enter To Skip|");
         String vendorInput = ConsoleHelper.promptForString("Vendor | Optional |Press Enter To Skip|");
         String amountInput = ConsoleHelper.promptForString("Exact Amount |Press Enter To Skip|");
 
-
+        //variables
         LocalDate startDate = null;
         LocalDate endDate = null;
         Double amount = null;
 
-        //date provided
+        //date provided , parse conversion to string
         try {
             if (!startDateInput.isEmpty()) startDate = LocalDate.parse(startDateInput);
             if (!endDateInput.isEmpty()) endDate = LocalDate.parse(endDateInput);
@@ -388,10 +389,13 @@ public class Main {
         }
 
         System.out.println("Search Results");
+
+        //array list for matches of search results
         ArrayList<Transactions> matches = new ArrayList<Transactions>();
-        for (int i = transactions.size() - 1; i >= 0; i--) {
+        for (int i = transactions.size() - 1; i >= 0; i--) {    //iterates backwards
             Transactions t = transactions.get(i);
 
+            //if startDate is given & transaction date is before it skips
             if (startDate != null && t.getDate().isBefore(startDate)) continue;
             if (endDate != null && t.getDate().isAfter(endDate)) continue;
             if (amount != null && t.getAmount() != amount) continue;
@@ -402,6 +406,7 @@ public class Main {
         if (matches.isEmpty()) {
             System.out.println("No Transactions Available.");
         } else {
+            //for transactions t in matches
             for (Transactions t : matches) {
                 System.out.println(t);
             }
