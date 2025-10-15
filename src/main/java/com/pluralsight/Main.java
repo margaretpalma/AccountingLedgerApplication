@@ -33,15 +33,18 @@ public class Main {
             System.out.println(ConsoleHelper.DOLPHIN + "L)" + ConsoleHelper.RESET + " Ledger");
             System.out.println(ConsoleHelper.PINK + "X)" + ConsoleHelper.RESET + " Exit Program");
 
+
             //prompting user input
             //variable stores as "choice"
             //calls method promptForString coming from ConsoleHelper
-            String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
+            String choice = ConsoleHelper.promptForString("****Choose From Menu****");
+
+
 
             //starts switch statement - user picks a choice (.toUpperCase lets user use D or d without breaking)
             switch (choice.toUpperCase()) {
                 case "D":
-                    System.out.println("-- Add Deposit --");
+                    System.out.println("****Add Deposit****");
 
                     //prompts for parts of transaction
                     LocalDate date = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
@@ -50,18 +53,20 @@ public class Main {
                     String vendor = ConsoleHelper.promptForString("Enter Vendor");
                     Double amount = ConsoleHelper.promptForAmount("Enter Amount");
 
-                    //transaction object - adds to csv file
+                    //transaction object - this is what adds the input to csv file
                     Transactions deposit = new Transactions(date, time, description, vendor, amount);
                     transactions.add(deposit);
+
+                    //SAVES to csv file
                     saveTransactionsToFile(deposit);
 
                     System.out.println(date + "|" + time + "|" + description + "|" + vendor + "|$" + amount);
                     //confirmation of deposit added
-                    System.out.println(ConsoleHelper.PINK + "-- Deposit Added --" + ConsoleHelper.RESET);
+                    System.out.println(ConsoleHelper.PINK + "****Deposit Added****" + ConsoleHelper.RESET);
                     break;
 
                 case "P":
-                    System.out.println("-- Make A Payment --");
+                    System.out.println("****Make A Payment****");
                     LocalDate paymentDate = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
                     LocalTime paymentTime = ConsoleHelper.promptForTime("Enter Time |hh:mm:ss");
                     String paymentDescription = ConsoleHelper.promptForString("Enter Description");
@@ -71,6 +76,7 @@ public class Main {
                     //converts payment to negative
                     paymentAmount = -Math.abs(paymentAmount);
 
+                    //transaction object, saves the transactions to the file
                     Transactions payment = new Transactions(paymentDate, paymentTime, paymentDescription, paymentVendor, paymentAmount);
                     transactions.add(payment);
                     saveTransactionsToFile(payment);
@@ -83,6 +89,7 @@ public class Main {
                 case "L":
                     launchLedger();
                     break;
+
                 //exits program
                 case "X":
                     System.out.println("Exiting Program");
@@ -94,25 +101,30 @@ public class Main {
         }
     }
 
-    // ledger menu
+    // ledger method
     public static void launchLedger() {
 
+            //while - loops to show each part of the menu until you press H(return to stop looping)
         while (true) {
             System.out.println(ConsoleHelper.BG_PINK + ConsoleHelper.TAUPE +
                     "\n╔══════════════════════════╗\n" +
                     "║        LEDGER MENU       ║\n" +
                     "╚══════════════════════════╝\n" +
                     ConsoleHelper.RESET);
-
             System.out.println(ConsoleHelper.DOLPHIN + "A)" + ConsoleHelper.RESET + " All Entries");
             System.out.println(ConsoleHelper.DOLPHIN + "D)" + ConsoleHelper.RESET + " Only Deposits");
             System.out.println(ConsoleHelper.DOLPHIN + "P)" + ConsoleHelper.RESET + " Only Payments");
             System.out.println(ConsoleHelper.DOLPHIN + "R)" + ConsoleHelper.RESET + " Reports Menu");
             System.out.println(ConsoleHelper.TAUPE + "H)" + ConsoleHelper.RESET + " Home Menu");
+
+            //prompts for user input
             String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
 
+            //.toUpperCase() lets user do A or a
             switch (choice.toUpperCase()) {
                 case "A":
+
+
                     System.out.println("--- All Entries ---");
                     //header row before all entries
                     System.out.println("Date       | Time     | Description                        | Vendor              |   Amount");
@@ -128,24 +140,25 @@ public class Main {
 
 
                 case "D":
+
                     //deposits only
                     //loop goes through every transaction in list
                     //prints if amount is greater than zero (positive)
                     System.out.println("---Deposits---");
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
-                        if (t.getAmount() > 0) {                //deposits
+                        if (t.getAmount() > 0) {
                             System.out.println(t);
                         }
                     }
                     break;
 
                 case "P":
-                    //todo: newest entries first
+
                     System.out.println("---Payments---");
                     //payments only
                     //loop goes through transactions in list
-                    //
+                    //i--
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getAmount() < 0) {
@@ -155,14 +168,9 @@ public class Main {
                     break;
 
                 case "R":
+                    //launches reports submenu
                     launchReportsMenu();
-                    //todo: REPORTS MENU
-                    //todo:1) month to date
-                    //todo:2) previous month
-                    //todo:3) year to date
-                    //todo:4) previous year
-                    //todo:5) search by vendor - vendor name, display entries
-                    //todo:6) back - back to ledger page
+
                 case "H":
                     System.out.println(ConsoleHelper.TAUPE + "--- Returning To Main Menu ---" + ConsoleHelper.RESET);
                     return;
@@ -173,12 +181,9 @@ public class Main {
         }
     }
 
-    // load transactions
-    //arraylist
-    //file reader/buffered reader
-
     //reports menu launch
     public static void launchReportsMenu() {
+
         while (true) {
             System.out.println(ConsoleHelper.BG_TAUPE + ConsoleHelper.VODKA +
                     "\n╔══════════════════════════╗\n" +
@@ -186,6 +191,7 @@ public class Main {
                     "╚══════════════════════════╝\n" +
                     ConsoleHelper.RESET);
 
+            //display menu options
             System.out.println(ConsoleHelper.DOLPHIN + "1)" + ConsoleHelper.RESET + " Month To Date");
             System.out.println(ConsoleHelper.DOLPHIN + "2)" + ConsoleHelper.RESET + " Previous Month");
             System.out.println(ConsoleHelper.DOLPHIN + "3)" + ConsoleHelper.RESET + " Year To Date");
@@ -194,17 +200,14 @@ public class Main {
             System.out.println(ConsoleHelper.PINK + "6)" + ConsoleHelper.RESET + " Custom Search");
             System.out.println(ConsoleHelper.TAUPE + "0)" + ConsoleHelper.RESET + " Return to Ledger Menu");
 
-
+            //prompts for user input
             String choice = ConsoleHelper.promptForString("---- Choose From Menu -----");
-
-
-            //todo: print newest entries first
 
 
             switch (choice) {
                 case "1": {
                     System.out.println("------Month To Date------");
-                    //todo complete case 1
+
                     LocalDate today = LocalDate.now();
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
@@ -381,3 +384,13 @@ public class Main {
         }
     }
 }
+
+//todo: newest entries first
+//todo: REPORTS MENU
+//todo:1) month to date
+//todo:2) previous month
+//todo:3) year to date
+//todo:4) previous year
+//todo:5) search by vendor - vendor name, display entries
+//todo:6) back - back to ledger page
+//todo complete case 1
