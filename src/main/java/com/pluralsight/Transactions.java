@@ -5,11 +5,11 @@ import java.time.LocalTime;
 
 //variables for transactions
 public class Transactions {
-    private LocalDate date;
-    private LocalTime time;
-    private String description;
-    private String vendor;
-    private double amount;
+    private LocalDate date;         //transaction date
+    private LocalTime time;         //transaction time
+    private String description;     //transaction description
+    private String vendor;          //transaction vendor
+    private double amount;          //transaction amount (positive or negative)
 
 //constructor
     public Transactions(LocalDate date, LocalTime time, String description, String vendor, double amount) {
@@ -20,6 +20,8 @@ public class Transactions {
         this.amount = amount;
     }
 //getters and setters for the variables
+
+
     public LocalDate getDate() {
         return date;
     }
@@ -36,6 +38,22 @@ public class Transactions {
         this.time = time;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -44,16 +62,18 @@ public class Transactions {
         this.amount = amount;
     }
 
-//formatting
+
+    //toString method formats for easier reading in ledger or reports
+    //replacing the default method over in main
+
     @Override
     public String toString() {
         String formattedTime = String.format("%02d:%02d:%02d",
                 time.getHour(), time.getMinute(), time.getSecond());
 
+    //table formatting
         return String.format(
-                "%-10s | %-8s | %-35s | %-20s | %8.2f",
-                date.toString(),
-                formattedTime,
+                "%-10s | %-8s | %-35s | %-20s | %8.2f", date.toString(), formattedTime,
                 description,
                 vendor,
                 amount

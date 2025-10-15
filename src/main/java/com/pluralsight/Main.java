@@ -65,7 +65,7 @@ public class Main {
                     LocalDate paymentDate = ConsoleHelper.promptForDate("Enter Date |yyyy-mm-dd|");
                     LocalTime paymentTime = ConsoleHelper.promptForTime("Enter Time |hh:mm:ss");
                     String paymentDescription = ConsoleHelper.promptForString("Enter Description");
-                    String paymentVendor = ConsoleHelper.promptForVendor("Enter Vendor");
+                    String paymentVendor = ConsoleHelper.promptForString("Enter Vendor");
                     Double paymentAmount = ConsoleHelper.promptForAmount("Enter Amount");
 
                     //converts payment to negative
@@ -134,7 +134,7 @@ public class Main {
                     System.out.println("---Deposits---");
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
-                        if (t.getAmount() > 0) {
+                        if (t.getAmount() > 0) {                //deposits
                             System.out.println(t);
                         }
                     }
@@ -209,7 +209,7 @@ public class Main {
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getDate().getMonth() == today.getMonth() && t.getDate().getYear() == today.getYear()) {
-                            System.out.println(t.getDate() + "|" + t.getDescription() + "|" + "|$" + t.getAmount());
+                            System.out.println(t);
                         }
                     }
                 }
@@ -223,7 +223,7 @@ public class Main {
                         Transactions t = transactions.get(i);
                         LocalDate date = t.getDate();
                         if (date.getYear() == previousMonth.getYear() && date.getMonth() == previousMonth.getMonth()) {
-                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
+                            System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
                     }
                     //todo
@@ -236,7 +236,7 @@ public class Main {
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getDate().getYear() == today.getYear()) {
-                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
+                            System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
                     }
 
@@ -249,7 +249,7 @@ public class Main {
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getDate().getYear() == previousYear) {
-                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
+                            System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
                     }
 
@@ -262,7 +262,7 @@ public class Main {
                     for (int i = transactions.size() - 1; i >= 0; i--) {
                         Transactions t = transactions.get(i);
                         if (t.getVendor().equalsIgnoreCase(vendorName)) {
-                            System.out.println(t.getDate() + "|" + t.getDescription() + "|$" + t.getAmount());
+                            System.out.println(t.getDate() + "|$" + t.getAmount());
                         }
                     }
                     break;
@@ -306,7 +306,7 @@ public class Main {
 
                     // debugging option
                     //shows files before menu
-                    //System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription()
+                    // System.out.println(t.getDate() + "|" + t.getTime() + "|"
                     //        + "|" + t.getVendor() + "|$" + t.getAmount());
 
                 } catch (Exception e) {
@@ -328,7 +328,6 @@ public class Main {
         try (FileWriter fileWriter = new FileWriter("transactions.csv", true)) {
             String line = String.format("%s|%s|%s|%s|%.2f%n",
                     t.getDate(), t.getTime(), t.getDescription(), t.getVendor(), t.getAmount());
-
             fileWriter.write(line);
 
         } catch (Exception e) {
@@ -337,8 +336,6 @@ public class Main {
     }
 
     //custom search
-
-
     public static void customSearch() {
         System.out.println("---Custom Search---");
 
@@ -370,9 +367,6 @@ public class Main {
 
             if (startDate != null && t.getDate().isBefore(startDate)) continue;
             if (endDate != null && t.getDate().isAfter(endDate)) continue;
-            if (!descriptionInput.isEmpty() && !t.getDescription().toLowerCase().contains(descriptionInput.toLowerCase()))
-                continue;
-            if (!vendorInput.isEmpty() && !t.getVendor().toLowerCase().contains(vendorInput.toLowerCase())) continue;
             if (amount != null && t.getAmount() != amount) continue;
 
             matches.add(t);

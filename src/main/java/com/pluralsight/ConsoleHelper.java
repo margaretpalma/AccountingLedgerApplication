@@ -5,13 +5,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class ConsoleHelper {
-    //todo: arraylist
-    //todo: parsing for LocalDate/LocalTime
-    //todo: scanner
-    //todo: methods
-    //run(), add deposit, make payment, showLedger, display all, display deposits, display payments
-    //todo: "prompt for"
-    //todo: scanner
+
         public static final String RESET = "\u001B[0m";
 
         // Text colors
@@ -27,6 +21,8 @@ public class ConsoleHelper {
 
         // Scanner to read users input
         private static Scanner scanner = new Scanner(System.in);
+
+
         //prompts for the string
         public static String promptForString(String prompt) {
             System.out.println(TAUPE + prompt + " " + RESET);
@@ -55,20 +51,16 @@ public class ConsoleHelper {
                     System.out.println(PINK + "Invalid Time Format. Use hh:mm:ss." + RESET);
                 }
             }
+
         }
-        //gets the vendor information
-        public static String promptForVendor(String prompt) {
-            System.out.println(TAUPE + prompt + " " + RESET);
-            return scanner.nextLine();
-        }
-        //gets the numeric value for amount
+        //gets the # value for amount
         public static double promptForAmount(String prompt) {
             System.out.println(TAUPE + prompt + " " + RESET);
             double result = scanner.nextDouble();
             scanner.nextLine();
             return result;
         }
-
+        //header customization
         public static void printHeader(String title) {
             String border = "╔══════════════════════════════════════╗";
             String footer = "╚══════════════════════════════════════╝";
@@ -77,12 +69,19 @@ public class ConsoleHelper {
             System.out.println(BG_VODKA + "║        " + PINK + title + BG_VODKA + "         ║");
             System.out.println(BG_VODKA + footer + RESET);
         }
-
+        //header customization
         public static void printOption(String key, String label) {
             System.out.println(DOLPHIN + key + ")" + RESET + " " + label);
         }
-
+        //header customization
         public static void printDivider() {
             System.out.println(TAUPE + "----------------------------------------" + RESET);
         }
     }
+//todo: arraylist
+//todo: parsing for LocalDate/LocalTime
+//todo: scanner
+//todo: methods
+//run(), add deposit, make payment, showLedger, display all, display deposits, display payments
+//todo: "prompt for"
+//todo: scanner
