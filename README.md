@@ -7,25 +7,22 @@ I'm Margaret Palma, creator of NeuroByte Books 2025's Accounting Ledger Applicat
 ⚡ NEUROBYTE BOOKS ACCOUNTING LEDGER⚡    
 
 ⚙️ Welcome To NeuroByte 2025!
-⚙️ NeuroByte is a command line ledger application that takes input from the user to track the bookstores financial transactions
-⚙️ There is a Full Reports Menu featuring the options to filter by date, vendor, deposits or payments with entries from earlier to latest.
-⚙️ Developed and tested in IntelliJ with a color-coded interface using ANSI colors
-⚙️ Used a Jira Board to track progress https://mpalma1496.atlassian.net/jira/software/projects/CP/boards/36/timeline?atlOrigin=eyJpIjoiOTUxNTkwMGI2NDBiNDJhY2JjOGRjMDJmMGIzNDVmYzAiLCJwIjoiaiJ9
+- NeuroByte is a command line ledger application that takes input from the user to track the bookstores financial transactions
+- There is a Full Reports Menu featuring the options to filter by date, vendor, deposits or payments with entries from earlier to latest.
+- Developed and tested in IntelliJ with a color-coded interface using ANSI colors
+- Used a Jira Board to track progress [JIRA BOARD] https://mpalma1496.atlassian.net/jira/software/projects/CP/boards/36/timeline?atlOrigin=eyJpIjoiOTUxNTkwMGI2NDBiNDJhY2JjOGRjMDJmMGIzNDVmYzAiLCJwIjoiaiJ9
 
- ⚡PROJECT STRUCTURE⚡  
+ 💾💾PROJECT STRUCTURE💾💾 
+...accessing terminal ...
+  -  Main.java          
+    -Transactions.java 
+    -ConsoleHelper.java  
+    -transactions.csv
+    -index.html
 
-💾 >accessing terminal ...
-  💾  Main.java          
-    💾Transactions.java 
-    💾ConsoleHelper.java  
-    💾transactions.csv
-    💾index.html
+🌐🌐SYSTEM OVERVIEW🌐🌐
 
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
-          ⚡ SYSTEM OVERVIEW⚡    
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
-
-🌐 > home menu access ...
+ > home menu access ...
     [D] Adds Deposits
     [P] Adds Payments
     [L] Ledger Submenu
