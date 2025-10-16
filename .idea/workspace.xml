@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="inline comments">
+    <list default="true" id="b14571a7-d00c-4f29-a47e-cba51cee3e55" name="Changes" comment="comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transactions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/transactions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,11 +440,18 @@
       <option name="project" value="LOCAL" />
       <updated>1760551568071</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="comments">
+      <option name="closed" value="true" />
+      <created>1760553411513</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1760553411513</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="payment menu works" />
     <MESSAGE value="ledger menu start" />
     <MESSAGE value="ledger menu working!!" />
     <MESSAGE value="home menu" />
@@ -470,6 +476,7 @@
     <MESSAGE value="comments back into code" />
     <MESSAGE value="refactoring promptForString in main and Transactions.java" />
     <MESSAGE value="inline comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="inline comments" />
+    <MESSAGE value="comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="comments" />
   </component>
 </project>
