@@ -11,6 +11,7 @@ I'm Margaret Palma, creator of NeuroByte Books 2025's Accounting Ledger Applicat
 ╚══════════════════════════╝
 ⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
 
+
 ⚙️ Welcome To NeuroByte 2025!
 ⚙️ NeuroByte is a command line ledger application that takes input from the user to track the bookstores financial transactions
 ⚙️ There is a Full Reports Menu featuring the options to filter by date, vendor, deposits or payments with entries from earlier to latest.
