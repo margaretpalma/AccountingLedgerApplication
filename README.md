@@ -1,12 +1,10 @@
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
-         ⚡ABOUT THE AUTHOR⚡         
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
+
+⚡ABOUT THE AUTHOR⚡         
 
 I'm Margaret Palma, creator of NeuroByte Books 2025's Accounting Ledger Application. I am a student of the Year Up United Program on the Application Development team. This project is for our first capstone of our Learn To Code Academy. 
 
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
-    ⚡ NEUROBYTE BOOKS ACCOUNTING LEDGER⚡    
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
+
+⚡ NEUROBYTE BOOKS ACCOUNTING LEDGER⚡    
 
 ⚙️ Welcome To NeuroByte 2025!
 ⚙️ NeuroByte is a command line ledger application that takes input from the user to track the bookstores financial transactions
@@ -14,9 +12,8 @@ I'm Margaret Palma, creator of NeuroByte Books 2025's Accounting Ledger Applicat
 ⚙️ Developed and tested in IntelliJ with a color-coded interface using ANSI colors
 ⚙️ Used a Jira Board to track progress https://mpalma1496.atlassian.net/jira/software/projects/CP/boards/36/timeline?atlOrigin=eyJpIjoiOTUxNTkwMGI2NDBiNDJhY2JjOGRjMDJmMGIzNDVmYzAiLCJwIjoiaiJ9
 
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
-         ⚡PROJECT STRUCTURE⚡  
-⛓️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⛓️
+ ⚡PROJECT STRUCTURE⚡  
+
 💾 >accessing terminal ...
   💾  Main.java          
     💾Transactions.java 
