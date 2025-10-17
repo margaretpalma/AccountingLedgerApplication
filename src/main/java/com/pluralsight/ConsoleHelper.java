@@ -5,24 +5,22 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class ConsoleHelper {
-
+    // Text colors
         public static final String RESET = "\u001B[0m";
-
-        // Text colors
         public static final String TAUPE = "\u001B[38;2;129;102;102m";   // Deep Taupe #816666
         public static final String DOLPHIN = "\u001B[38;2;126;156;142m"; // Dolphin Gray #7E9C8E
         public static final String PINK = "\u001B[38;2;255;214;238m";    // Mimi Pink #FFD6EE
         public static final String VODKA = "\u001B[38;2;187;195;240m";   // Vodka #BBC3F0
-
         // Backgrounds
         public static final String BG_TAUPE = "\u001B[48;2;129;102;102m";
         public static final String BG_VODKA = "\u001B[48;2;187;195;240m";
         public static final String BG_PINK = "\u001B[48;2;255;214;238m";
 
+
         // Scanner to read users input
         private static Scanner scanner = new Scanner(System.in);
 
-
+        //methods used to
         //prompts for the string
         public static String promptForString(String prompt) {
             System.out.println(TAUPE + prompt + " " + RESET);

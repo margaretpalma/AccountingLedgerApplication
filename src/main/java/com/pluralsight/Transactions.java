@@ -11,7 +11,7 @@ public class Transactions {
     private String vendor;          //transaction vendor
     private double amount;          //transaction amount (positive or negative)
 
-//constructor
+//constructor - to initialize objects
     public Transactions(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;

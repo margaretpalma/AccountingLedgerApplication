@@ -28,6 +28,8 @@ public class Main {
                     "╚══════════════════════════════╝\n" +
                     ConsoleHelper.RESET);
 
+
+            System.out.println("Welcome To NeuroByte Books Accounting Ledger");
             System.out.println(ConsoleHelper.DOLPHIN + "D)" + ConsoleHelper.RESET + " Add Deposit");
             System.out.println(ConsoleHelper.DOLPHIN + "P)" + ConsoleHelper.RESET + " Make a Payment");
             System.out.println(ConsoleHelper.DOLPHIN + "L)" + ConsoleHelper.RESET + " Ledger");
@@ -303,7 +305,7 @@ public class Main {
         }
     }
 
-
+    //get transactions from file
     public static ArrayList<Transactions> getTransactionsFromFile() {
 
         //creates an empty list - stores the transactions after reading from CSV file
@@ -363,6 +365,7 @@ public class Main {
     }
 
     //custom search
+    //feature of the reports menu
     public static void customSearch() {
         System.out.println("---Custom Search---");
 
@@ -391,6 +394,7 @@ public class Main {
         System.out.println("Search Results");
 
         //array list for matches of search results
+        //conditional for loop – runs while the condition (i >= 0) is true.
         ArrayList<Transactions> matches = new ArrayList<Transactions>();
         for (int i = transactions.size() - 1; i >= 0; i--) {    //iterates backwards
             Transactions t = transactions.get(i);
